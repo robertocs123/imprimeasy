@@ -1,0 +1,216 @@
+{% extends './base_usuario.html' %}
+{% block content %}
+<body>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 ">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-2 mb-2">
+					<a class="navbar-brand" href="{% url 'menu'%}"><i class="fas fa-home"></i> ImprimEasy</a>
+					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					    <span class="navbar-toggler-icon"></span>
+					  </button>
+
+					  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					    <ul class="navbar-nav mr-auto">
+					      <li class="nav-item active">
+					        <a class="nav-link" href="{% url 'menu'%}">Início <span class="sr-only">(current)</span></a>
+					      </li>
+					     
+					      <li class="nav-item">
+					        <a class="btn nav-link text-left "  data-toggle="modal" data-target="#exampleModalCenter">Termos <i class="fas fa-asterisk"></i></a>
+					      </li>
+					     <li class="nav-item">
+					        <a class="btn nav-link text-left" data-toggle="modal" data-target="#exampleModalCenter2">Valores <i class="fas fa-donate"></i></a>
+					      </li>
+					      <li class="nav-item">
+					      	<a class="btn nav-link text-left" data-toggle="modal" data-target="#exampleModalCenter3">Ajuda <i class="fas fa-question"></i> </a>
+					        
+					      </li>
+					    </ul>
+					  </div>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+					    <li class="breadcrumb-item"><a href="{% url 'menu'%}">ImprimEasy</a></li>
+						<li class="breadcrumb-item " aria-current="page"><span style="color: green">{{matricula}}</span></li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row">	
+			<div class="modal fade mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+					    <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalCenterTitle">Termos</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true">&times;</span>
+					        </button>
+					    </div>
+					    <div class="modal-body">
+					    	<div id="list-example" class="list-group">
+							  <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-5">Item 5</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-6">Item 6</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-7">Item 7</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-8">Item 8</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-9">Item 9</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-10">Item 10</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-11">Item 11</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-12">Item 12</a>
+							  <a class="list-group-item list-group-item-action" href="#list-item-13">Item 13</a>
+							</div>
+							<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+							  <h4 id="list-item-1">Item 1</h4>
+							  <p>Não haverá devolução do dinheiro caso o aluno envie um arquivo errado, pois ele será impresso da mesma forma.</p>
+							  <h4 id="list-item-2">Item 2</h4>
+							  <p>Somente serão impressas folhas do tipo A4.</p>
+							  <h4 id="list-item-3">Item 3</h4>
+							  <p> A impressão só será realizada em dias úteis (EX: Arquivos enviados no sábado e no domingo estarão prontas na manhã da segunda).</p>
+							  <h4 id="list-item-4">Item 4</h4>
+							  <p>Caso seja solicitada a impressão em uma impressora a laser e essa não venha a ter na gráfica, automaticamente, será impressa em uma impressora do tipo Jato de Tinta.</p>
+							  <h4 id="list-item-5">Item 5</h4>
+							  <p>Somente serão impressos arquivos do tipo PDF.</p>
+							  <h4 id="list-item-6">Item 6</h4>
+							  <p>Estorno do seu dinheiro caso a impressão não esteja adequada devido erros da gráfica.</p>
+							  <h4 id="list-item-7">Item 7</h4>
+							  <p> O Cliente deverá informar sua própria matrícula do SUAP a ser utilizada no Website e será inteiramente responsável por qualquer atividade que ocorra no âmbito de seu cadastro.</p>
+							  <h4 id="list-item-8">Item 8</h4>
+							  <p>Ao se cadastrar, o cliente autoriza a vizualização de sua matrícula por parte da gráfica.</p>
+							  <h4 id="list-item-9">Item 9</h4>
+							  <p> Ao efetuar uma determinada compra, o cliente concorda que é necessário a retirada do seu arquivo impresso em nossa sede.</p>
+							  <h4 id="list-item-10">Item 10</h4>
+							  <p>Ao efetuar uma determinada compra, o cliente concorda com as informações contidas na descrição de cada produto, inclusive o tempo de produção e a responsabilidade pelo arquivo.</p>
+							  <h4 id="list-item-11">Item 11</h4>
+							  <p>A informação de preço pode ser alterada sem aviso prévio, sendo considerada válida a informação do momento de solicitação do serviço. Por este motivo, o usuário deve sempre consultar o valor final atualizado na tela do SITE, e que irá constar no momento do pedido.</p>
+							  <h4 id="list-item-12">Item 12</h4>
+							  <p>Não nos responsabilizamos por erros da parte do usuário.</p>
+							  <h4 id="list-item-13">Item 13</h4>
+							  <p> Ao acessar o site, se cadastrar ou de qualquer outra forma requisitar os serviços da gráfica, o usuário aceita integralmente os Termos de Uso, que poderá ser modificado a qualquer tempo, no todo ou em parte, motivo pelo qual a cada nova contratação deverá ao usuário tomar ciência deste documento.</p>
+							</div>
+					     
+					    	
+
+					    	
+
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+					       
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">	
+			<div class="modal fade mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 " id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+					    <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalCenterTitle">Valores de cada impressão</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true">&times;</span>
+					        </button>
+					    </div>
+					    <div class="modal-body">
+					        <ul>
+						    	<li>Colorido: <b>R$ 0,50 </b> por folha. </li> 
+						    	<li>Preto e branco: <b>R$ 0,25 </b> por folha.</li> 
+					    	</ul>
+					  
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+					       
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">	
+			<div class="modal fade mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 " id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+					    <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalCenterTitle">Calma, nós iremos te ajudar</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true">&times;</span>
+					        </button>
+					    </div>
+					    <div class="modal-body" >
+
+					    	<p><b>01.</b> Primeiramente, para solicitar uma impressão, aperte no botão "<b>Nova Impressão</b>".</p>
+					    	<p><b>02.</b> Depois escolha o arquivo, coloque a quantidade de cópias, o tipo da impressão (colorido ou preto e branco), e, se necessário, uma observação. Esses três últimos irão vir como padrão. Após isso, aperte no botão "<b>Enviar</b>".</p>
+					    	<p><b>03.</b> Você poderá consultar seu saldo apertando no botão "<b>Verificar saldo</b>"</p>
+					    	<p><b>04.</b> Apertando no botão "<b>Histórico</b>", você irá ver todas as suas solicitações de impressão, na nova tela será mostrado o status da impressão. Quando o ADM da gráfica imprimir seu arquivo, no campus "Status" aparecerá "<b>Impresso</b>".</p>
+					    
+					  		
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+					       
+					    </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 ">
+				{% if alerta_envio %}
+					<div class="alert alert-success" role="alert"><i class="fas fa-info-circle"></i>
+					   Arquivo enviado com sucesso! Custo: R$ {{valor}}. Verifique se ele foi impresso apertando no botão "Histórico".
+					</div>
+				{% endif %}
+				
+
+
+				
+
+				{% if alerta_envio5 %}
+					<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+			 			Arquivo muito grande, não foi possível ser enviado.
+					</div>
+				{% endif %}
+
+				{% if verifica_saldo %}
+					<div class="alert alert-success" role="alert"><i class="fas fa-info-circle"></i>
+					   Seu saldo atual é de R$ {{valor}}. Para adicionar saldo, vá até a gráfica.
+					</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="row">
+			<div  class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 ">					 				
+				<a href="{% url 'solicitar' %}" class="btn btn-success btn-block btn-lg" role="button"><i class="fas fa-print"></i> Nova Impressão</a>
+
+				<a href="{% url 'historico' %}" class="btn btn-block btn-primary btn-lg mb-2" role="button"><i class="fas fa-history"></i>  Histórico </a>
+
+				<a href="{% url 'saldo' %}" class="btn btn-block btn-info btn-lg mb-2" role="button"><i class="fas fa-piggy-bank"></i>  Verificar saldo </a>		
+				
+			</div>
+			<div class="mt-3 offset-md-2 col-12 col-sm-8 offset-md-2">					 			
+				<a href="{% url 'logout' %}" class="btn  btn-block btn-danger  btn-lg" role="button"><i class="fas fa-sign-out-alt"></i>&nbsp; Sair</a>	
+
+			</div>
+
+		</div>
+		
+	</div>
+
+</body>
+{% endblock %}

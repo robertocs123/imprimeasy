@@ -1,0 +1,75 @@
+{% extends './base_usuario.html' %}
+{% block content %}
+<body>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 ">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-2 mb-2">
+					<a class="navbar-brand" href="{% url 'menu'%}"><i class="fas fa-home"></i> ImprimEasy</a>
+					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					    <span class="navbar-toggler-icon"></span>
+					  </button>
+
+					  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					    <ul class="navbar-nav mr-auto">
+					      <li class="nav-item active">
+					        <a class="nav-link" href="{% url 'historico'%}">Este é o seu histórico de impressões<span class="sr-only">(current)</span></a>
+					      </li>
+					     
+					      
+					    </ul>
+					  </div>
+				</nav>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+					    <li class="breadcrumb-item"><a href="{% url 'menu'%}">ImprimEasy</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Histórico</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 mb-5">
+				<div class="card">
+					<div class="card-body">
+					  	<div class="table-responsive">
+							<table class="table">
+						  		<thead class="thead-dark">
+									<tr>
+							  			<th scope="col"><i class="fas fa-hashtag"></i></th>
+							  			
+							  			<th scope="col">Arquivo</th>
+							  			<th scope="col">Status</th>
+							  			<th scope="col">Data de solicitação</th>
+									</tr>
+						  		</thead>
+						  		<tbody>
+						  			{% for arquivo in arquivos %}
+						  			<tr>
+						  				<th scope="row">{{ forloop.counter }}</th>
+							  			<td>{{ arquivo.nome }}</td>
+							  			<td class="text-warning">{{ arquivo.get_status_display  }}</td>
+							  			<td>{{ arquivo.data }}</td>
+							
+									</tr> 
+						  			{% endfor %}
+						  		</tbody>
+							</table>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+</body>
+{% endblock %}

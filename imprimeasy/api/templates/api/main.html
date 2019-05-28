@@ -1,0 +1,213 @@
+﻿{% extends './base.html' %}
+{% block content %}
+<body>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-md-12 mb-2">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-2 mb-3">
+					<a class="navbar-brand" href="{% url 'main' %}"><i class="fas fa-home"></i> ImprimEasy - ADM</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					    <ul class="navbar-nav mr-auto">
+					      	<li class="nav-item active">
+					        	<a class="nav-link" href="{% url 'main' %}">Início <span class="sr-only">(current)</span></a>
+					      	</li>
+					      	<li class=" nav-item">
+					        	<a class="btn nav-link text-left"  data-toggle="modal" data-target="#exampleModalCenter">Adicionar saldo <i class="fas fa-handshake"></i> </a>
+					      	</li>
+					     	<li class="nav-item">
+					        	<a class="btn nav-link text-left" data-toggle="modal" data-target="#exampleModalCenter2">Valores <i class="fas fa-donate"></i></a>
+					      	</li>
+					      	<li class="nav-item">
+					        	<a class="btn nav-link text-left" href="{% url 'logoutGrafica' %}"><span style="color: red"> Deslogar <i class="fas fa-sign-out-alt"></i></span></a>
+					      	</li>
+					    </ul>
+					</div>
+				</nav>
+			</div>
+		</div><!--ok-->
+
+		<!-- Modal -->
+		<div class="row">	
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+					    <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar saldo  </h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true">&times;</span>
+					        </button>
+					    </div>
+					    <div class="modal-body">
+					     	<form method="POST" action="{% url 'addsaldo' %}">
+					     		{% csrf_token %}
+					     		{{formulario.as_p}}
+							
+					    		<div class="form-group">
+					    		
+							    	<label for="Nmatricula">Matricula</label>
+							    	<input type="text" class="form-control" id="Nmatricula" name="matricula" maxlength="14"  required>
+							    	<small id="matriculaHelp" class="form-text text-muted">Matricula do usuário.</small>
+								</div>
+								<div class="form-group">
+
+							    	<label for="Nvalor">Valor</label>
+
+							  		<div class="input-group mb-3">
+								  		<div class="input-group-prepend">
+								    		<span class="input-group-text">$</span>
+								  		</div>
+								  		<input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" id="Nvalor" name="valor" required min="1" max="20">
+								  		<div class="input-group-append">
+								    		<span class="input-group-text">.00</span>
+								  		</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<button class="btn btn-success " type="submit">Confirmar</button>
+								</div>
+					     </form>
+					    						 
+					    </div>
+						<div class="modal-footer">
+						    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+						       Fechar
+						    </button>
+						       
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--ok-->
+	
+
+
+		<div class="row">	
+			<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+					    <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalCenterTitle">Valores de cada impressão
+					        </h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					        	<span aria-hidden="true">&times;</span>
+					        </button>
+					    </div>
+					    <div class="modal-body">
+					        
+					    	<p>Colorido: <b>R$ 0,50</b> </p> 
+					    	<p>Preto e branco: <b>R$ 0,25</b></p>
+					    
+
+					    </div>
+					    <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar
+					        </button>
+					       
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--ok-->
+		{% if alerta %}
+			<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+			  Não foi possível adicionar saldo, a matricula digitada não é válida.
+			</div>
+		{% endif %}
+
+		{% if alerta2 %}
+			<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+			  O saldo de {{saldo}} reais do usuário: {{matricula}}, é insuficiente para o pagamento da impressão.
+			</div>
+		{% endif %}
+
+		{% if alerta1 %}
+			<div class="alert alert-success" role="alert"><i class="fas fa-info-circle"></i>
+			   Sucesso, foi acrescentado {{valor}} reais ao saldo do usuário: {{matricula}}
+			</div>
+		{% endif %}
+
+		{% if alerta3 %}
+			<div class="alert alert-success" role="alert"><i class="fas fa-info-circle"></i>
+			   Sucesso, foi acrescentado {{valor}} real ao saldo do usuário: {{matricula}}
+			</div>
+		{% endif %}
+
+
+		<div class="row">
+			<div class="col-md-12 ">
+					<span class="badge badge-info"> Solicitações de Impressão</span>
+					<span class="badge badge-light">Observação: Cor = 1 --> colorido;  Cor = 0 --> Preto e branco; M.C.I. = marcar como impresso. </span>  
+					
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+					  	<div class="table-responsive">
+							<table class="table">
+							  	<thead class="thead-dark">
+									<tr>
+								  		<th scope="col"><i class="fas fa-hashtag"></i></th>
+								  		<th scope="col">Data de solicitação</th>
+								  		<th scope="col">Usúario</th>
+								  		<th scope="col">Arquivo</th>
+								  		<th scope="col">Status</th>
+								   		<th scope="col">Cor</th>
+								  		<th scope="col">Cópias</th>
+								  		<th scope="col">Valor(R$)</th>
+								  		<th scope="col">OBS</th>
+								  		<th scope="col">Ações</th>
+										</tr>
+							  	</thead>
+							  	<tbody>
+							  		{% for arquivo in arquivos %}
+							  		<tr>
+							  			<th scope="row">{{ forloop.counter }}</th>
+							  			<td>{{ arquivo.data }}</td>
+								  		<td>{{ arquivo.usuario.matricula }}</td>
+								  		<td>{{ arquivo.nome }}</td>
+								  		<td class="text-warning">{{ arquivo.get_status_display }}</td>
+								  		<td>{{ arquivo.cor }}</td>
+								  		<td>{{ arquivo.copias }}</td>
+								  		<td>{{ arquivo.valor }}</td>
+								  		<td>{{ arquivo.obs }}</td>
+								  	
+								  		<td>
+									  		<div class="btn-group" role="group" aria-label="Basic example">
+											  	<a target="_blank" href="/grafica{{ arquivo.url }}" class="btn btn-primary">Baixar <i class="fas fa-download"></i></a> 
+											  	<a href="{% url 'impresso' arquivo.id arquivo.usuario %}" class="btn btn-success">M.C.I. <i class="fas fa-check"></i></a>
+											  	<a href="{% url 'negar' arquivo.id %}" class="btn btn-danger" role="button">Cancelar <i class="fas fa-ban"></i></a>
+											</div>
+										</td>
+									</tr>
+							  		{% endfor %}
+							  	</tbody>
+							</table>
+					    </div>
+					</div>
+				</div>		
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12 mt-1">					
+				<div class="form-group text-right">
+					<a href="{% url 'todas' %}" class="btn btn-light" role="button">Mostrar todas </a>		
+				</div>		
+				
+			</div>
+		</div>
+
+	</div>
+
+</body>
+{% endblock %}

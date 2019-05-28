@@ -1,0 +1,107 @@
+{% extends './base_usuario.html' %}
+{% block content %}
+<body>
+		<div class="container-fluid">
+			
+			<div class="row">
+				<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2 ">
+					<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-2 mb-2">
+						<a class="navbar-brand" href="{% url 'menu'%}"><i class="fas fa-home"></i> ImprimEasy </a>
+						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+						  </button>
+
+						  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+						    <ul class="navbar-nav mr-auto">
+						      <li class="nav-item active">
+						        <a class="nav-link" href="#">Selecionar arquivo para impressão<span class="sr-only">(current)</span></a>
+						      </li>
+						     
+						    </ul>
+						  </div>
+					</nav>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+						    <li class="breadcrumb-item"><a href="{% url 'menu'%}">ImprimEasy</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Selecionar arquivo</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+			<div class="row">
+				<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2">
+					{% if alerta_envio3 %}
+						<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+				 			Por enquanto, apenas arquivos PDF!
+						</div>
+					{% endif %}
+
+					{% if alerta_envio4 %}
+					<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+			 			Seu arquivo não foi enviado, seu saldo é insuficiente para a impressão. Para imprimir seu arquivo, vá até a gráfica e adicione saldo a sua conta. Valor da impressão: {{valor}} reais. Seu saldo: {{saldo}} reais.
+					</div>
+					{% endif %}
+
+
+					{% if alerta_envio2 %}
+						<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i>
+				 			Ocorreu um erro e não foi possível enviar o arquivo, tente novamente.
+						</div>
+					{% endif %}
+				</div>
+				
+
+			</div>
+		        
+			<div class="row">
+				<div class="mt-2 offset-md-2 col-12 col-sm-8 offset-md-2">
+					<form method = "POST" class="form-group" action="{% url 'enviar' %}" enctype="multipart/form-data">
+			
+						{%csrf_token%}
+						<!--{{formulario.as_p}}-->
+						<div class="form-group">
+							<label for="id_nome">Arquivo:</label>
+							<input class="form-control-file" type="file" name="arquivo" maxlength="100" required id="id_nome">
+								
+						</div>
+							
+						<div class="form-group"> 
+							<label for="id_copias">Copias:</label>
+							<input class="form-control" type="number" name="copias" value="1" required="" id="id_copias" min="1" max="5">
+						</div>
+
+							
+						<div class="form-group"> 
+							<label for="id_cor">Tipo:</label>
+							<select class="form-control" name="cor" id="id_cor">
+								<option value="1">Colorido</option>
+
+								<option value="0" selected="">Preto e branco</option>
+							</select>
+
+						</div>
+						<div class="form-group">
+							<label for="id_obs">Observação:</label>
+							<textarea  class="form-control" rows="3"  name="obs"  maxlength="1000" required="" id="id_obs">Sem obs.</textarea>
+								
+						</div>
+						<div class="form-group text-center">
+							<button type="submit" class="btn btn-success btn-block btn-lg">Enviar <span><i class="fas fa-upload"></i></span></button>
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+</body>
+
+
+
+{% endblock %}
